@@ -45,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/activity_horizontal_margin"
+            android:id="@+id/valueProp"
             android:alpha="0.7"
             android:gravity="center"
             android:text="Add a long description here about your app's important feature."
