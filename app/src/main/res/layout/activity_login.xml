@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/userLogin"
+            android:id="@+id/userSignUp"
             android:text="Sign Up!"
             android:textSize="20sp"
             android:clickable="true"
@@ -96,7 +96,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView"
+        android:id="@+id/userProfileImage"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="66dp"

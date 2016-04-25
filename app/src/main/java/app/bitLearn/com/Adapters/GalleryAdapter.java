@@ -34,8 +34,8 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
 
         public MyViewHolder(View view) {
             super(view);
-            thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-            movieTitle = (TextView) view.findViewById(R.id.movieTitle);
+            thumbnail = (ImageView) view.findViewById(R.id.category_thumbnail);
+            movieTitle = (TextView) view.findViewById(R.id.category_title);
 
         }
     }
@@ -49,7 +49,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.gallery_thumbnail, parent, false);
+                .inflate(R.layout.all_courses, parent, false);
 
         return new MyViewHolder(itemView);
     }
@@ -57,14 +57,13 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
         Image image = images.get(position);
-        TextView textView = null;
-
+        holder.movieTitle.setText(image.getName());
         Glide.with(mContext).load(image.getMedium())
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.thumbnail);
-       
+
 
     }
 

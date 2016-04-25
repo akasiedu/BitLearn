@@ -1,7 +1,9 @@
 package app.bitLearn.com.Activity;
 
 import android.animation.ArgbEvaluator;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.design.widget.CoordinatorLayout;
@@ -21,6 +23,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 
 import app.bitLearn.com.R;
 import app.bitLearn.com.Utils.Utils;
@@ -65,6 +71,22 @@ public class PagerActivity extends AppCompatActivity {
 //                    | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN);
 //            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.black_trans80));
 //        }
+
+        SharedPreferences pref = getSharedPreferences("ActivityPREF", Context.MODE_PRIVATE);
+        if(pref.getBoolean("activity_executed", false)){
+            Intent intent = new Intent(this, SignUpActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            SharedPreferences.Editor ed = pref.edit();
+            ed.putBoolean("activity_executed", true);
+            ed.commit();
+        }
+
+
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        CallbackManager callbackManager = CallbackManager.Factory.create();
+        AppEventsLogger.activateApp(this);
 
 
 

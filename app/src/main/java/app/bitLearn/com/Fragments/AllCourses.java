@@ -3,6 +3,7 @@ package app.bitLearn.com.Fragments;
 
 import android.app.ProgressDialog;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -24,6 +25,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import app.bitLearn.com.Activity.CourseDetailActivity;
 import app.bitLearn.com.Adapters.GalleryAdapter;
 import app.bitLearn.com.R;
 import app.bitLearn.com.Utils.AppController;
@@ -44,8 +46,8 @@ public class AllCourses extends Fragment {
     private RecyclerView recyclerView;
 
 
-    int spanCount = 2; // 3 columns
-    int spacing = 5; // 50px
+    int spanCount = 2; // 2 columns
+    int spacing = 5; // 5px
     boolean includeEdge = true;
 
 
@@ -67,20 +69,38 @@ public class AllCourses extends Fragment {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(spanCount, spacing, includeEdge));
         recyclerView.setAdapter(mAdapter);
         fetchImages();
+        recyclerView.addOnItemTouchListener(new GalleryAdapter.RecyclerTouchListener(getContext(), recyclerView, new GalleryAdapter.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("image", images);
+//                bundle.putInt("position", position);
+
+                Image image = images.get(position);
+                Intent intent = new Intent(getActivity(), CourseDetailActivity.class);
+                intent.putExtra("image", image);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
         return view;
     }
 
 
     private void fetchImages() {
         pDialog = new ProgressDialog(getContext());
-        pDialog.setMessage("Downloading json...");
+        pDialog.setMessage("Loading ...");
         pDialog.show();
 
         JsonArrayRequest req = new JsonArrayRequest(endpoint,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        Log.d(TAG, response.toString());
+//                        Log.d(TAG, response.toString());
                         pDialog.hide();
 
                         images.clear();
@@ -94,7 +114,6 @@ public class AllCourses extends Fragment {
                                 image.setMedium(url.getString("medium"));
                                 image.setLarge(url.getString("large"));
                                 image.setTimestamp(jsonObject.getString("timestamp"));
-
                                 images.add(image);
 
                             } catch (JSONException e) {

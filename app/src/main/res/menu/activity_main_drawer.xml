@@ -3,11 +3,11 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_news"
+            android:id="@+id/nav_allcourses"
             android:icon="@drawable/ic_menu_camera"
             android:title="All Courses" />
         <item
-            android:id="@+id/nav_events"
+            android:id="@+id/nav_mycourses"
             android:icon="@drawable/ic_menu_gallery"
             android:title="My Courses" />
         <item
@@ -15,9 +15,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Completed Courses" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_completedcourses"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Completed Courses" />
     </group>
 
     <item android:title="Communicate">

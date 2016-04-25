@@ -9,5 +9,5 @@
     <item
         android:id="@+id/fb_logout"
         android:orderInCategory="100"
-        android:title="Facebook Logout" />
+        android:title="Logout" />
 </menu>
